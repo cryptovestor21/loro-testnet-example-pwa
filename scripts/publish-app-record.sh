@@ -28,9 +28,9 @@ services:
     fees: 15000000alnt
 EOF
 
-
+if [ -z "$CERC_REGISTRY_BOND_ID" ]; then
   bond_id=$(laconic -c $CONFIG_FILE registry bond create --type alnt --quantity 10000000000 --user-key "${CERC_REGISTRY_USER_KEY}")
-  
+
   CERC_REGISTRY_BOND_ID=$(echo ${bond_id} | jq -r .bondId)
 fi
 
@@ -65,7 +65,7 @@ if [ -z "$CERC_REGISTRY_APP_CRN" ]; then
   authority=$(echo "$rcd_name" | cut -d'/' -f1 | sed 's/@//')
   app=$(echo "$rcd_name" | cut -d'/' -f2-)
   CERC_REGISTRY_APP_CRN="lrn://$authority/applications/$app"
-# laconic -c $CONFIG_FILE registry authority reserve ${authority} --user-key "${CERC_REGISTRY_USER_KEY}"
+#  laconic -c $CONFIG_FILE registry authority reserve ${authority} --user-key "${CERC_REGISTRY_USER_KEY}"
   laconic -c $CONFIG_FILE registry authority bond set ${authority} ${CERC_REGISTRY_BOND_ID} --user-key "${CERC_REGISTRY_USER_KEY}"
 fi
 
