@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@wavefive-apps/pwa-test-2",
-  "version": "0.2.43",
+  "version": "0.2.44",
   "repository": "https://github.com/cryptovestor21/loro-testnet-example-pwa",
   "scripts": {
     "dev": "next dev",
